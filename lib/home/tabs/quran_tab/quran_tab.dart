@@ -137,7 +137,8 @@ class _QuranTabState extends State<QuranTab> {
                 return SuraItemWidget(
                   index: index,
                   onTap: () {
-                    suraDataList.add(
+                    suraDataList.insert(
+                      0,
                       SuraData(
                         arabicName: QuranResources.arabicQuranSuras[index],
                         englishName: QuranResources.englishQuranSurahs[index],
