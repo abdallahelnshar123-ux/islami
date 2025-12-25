@@ -33,6 +33,12 @@ class AppStyles {
     color: AppColors.primaryColor,
     fontSize: 24,
   );
+  static const TextStyle bold15Primary = TextStyle(
+    fontFamily: 'Janna',
+    fontWeight: FontWeight.w700,
+    color: AppColors.primaryColor,
+    fontSize: 15,
+  );
   static const TextStyle bold14Black = TextStyle(
     fontFamily: 'Janna',
     fontWeight: FontWeight.w700,
