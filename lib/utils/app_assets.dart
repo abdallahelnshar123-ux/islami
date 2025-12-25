@@ -9,6 +9,11 @@ class AppAssets {
   static const String mostRecentImage = 'assets/images/img_most_recent.png';
   static const String detailsDecorationImage =
       'assets/images/details_decoration.png';
+  static const String introImage1 = 'assets/images/intro_image_1.png';
+  static const String introImage2 = 'assets/images/intro_image_2.png';
+  static const String introImage3 = 'assets/images/intro_image_3.png';
+  static const String introImage4 = 'assets/images/intro_image_4.png';
+  static const String introImage5 = 'assets/images/intro_image_5.png';
 
   /// icons=========================
   static const String iconQuran = 'assets/icons/icon_quran.svg';
