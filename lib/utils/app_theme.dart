@@ -12,6 +12,7 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: AppColors.transparentColor,
     appBarTheme: AppBarTheme(
+      surfaceTintColor: AppColors.blackColor,
       backgroundColor: AppColors.blackColor,
       centerTitle: true,
       titleTextStyle: AppStyles.bold20Primary,
