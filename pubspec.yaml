@@ -38,6 +38,7 @@ dependencies:
   introduction_screen: ^4.0.0
   flutter_svg: ^2.2.3
   shared_preferences: ^2.5.4
+  carousel_slider: ^5.1.1
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/suras/
+    - assets/hadeeth/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

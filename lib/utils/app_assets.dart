@@ -14,6 +14,7 @@ class AppAssets {
   static const String introImage3 = 'assets/images/intro_image_3.png';
   static const String introImage4 = 'assets/images/intro_image_4.png';
   static const String introImage5 = 'assets/images/intro_image_5.png';
+  static const String hadethDecorImage = 'assets/images/hadeth_decor.png';
 
   /// icons=========================
   static const String iconQuran = 'assets/icons/icon_quran.svg';
