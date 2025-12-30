@@ -63,7 +63,7 @@ class _IntroScreenState extends State<IntroScreen> {
         sharedPreferences.setBool(AppRoutes.introScreenKey, false);
         setState(() {});
       },
-
+      nextStyle: TextButton.styleFrom(),
       dotsDecorator: DotsDecorator(
         size: const Size.square(10.0),
         activeSize: const Size(20.0, 10.0),
