@@ -18,6 +18,7 @@ class QuranTab extends StatefulWidget {
 }
 
 class _QuranTabState extends State<QuranTab> {
+  List<int> filterList = List.generate(114, (index) => index);
   List<SuraData> suraDataList = [];
 
   @override
@@ -30,6 +31,10 @@ class _QuranTabState extends State<QuranTab> {
         children: [
           /// search text field ==================================
           TextField(
+            autofocus: false,
+            onChanged: (text) {
+              searchByNewText(text);
+            },
             cursorColor: AppColors.primaryColor,
             style: AppStyles.bold16White,
             decoration: InputDecoration(
@@ -132,17 +137,25 @@ class _QuranTabState extends State<QuranTab> {
 
           /// suras items Widget ========================================
           Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) {
+            child: filterList.isEmpty
+                ? Center(
+                    child: Text(
+                      'No Sura Item Found !',
+                      style: AppStyles.bold20Primary,
+                    ),
+                  )
+                : ListView.separated(
+                    itemBuilder: (context, index) {
                 return SuraItemWidget(
-                  index: index,
-                  onTap: () {
+                        index: filterList[index],
+                        onTap: () {
                     suraDataList.insert(
                       0,
                       SuraData(
                         arabicName: QuranResources.arabicQuranSuras[index],
-                        englishName: QuranResources.englishQuranSurahs[index],
-                        ayatNumber: QuranResources.ayatNumber[index],
+                              englishName:
+                                  QuranResources.englishQuranSuras[index],
+                              ayatNumber: QuranResources.ayatNumber[index],
                       ),
                     );
 
@@ -163,8 +176,8 @@ class _QuranTabState extends State<QuranTab> {
                   endIndent: context.width * 0.1,
                 );
               },
-              itemCount: 114,
-            ),
+                    itemCount: filterList.length,
+                  ),
           ),
         ],
       ),
@@ -176,5 +189,23 @@ class _QuranTabState extends State<QuranTab> {
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(width: 2, color: AppColors.primaryColor),
     );
+  }
+
+  void searchByNewText(String text) {
+    List<int> searchResultList = [];
+    for (int i = 0; i < QuranResources.arabicQuranSuras.length; i++) {
+      if (QuranResources.arabicQuranSuras[i].contains(text)) {
+        searchResultList.add(i);
+      }
+    }
+    for (int i = 0; i < QuranResources.englishQuranSuras.length; i++) {
+      if (QuranResources.englishQuranSuras[i].toLowerCase().contains(
+        text.toLowerCase().trim(),
+      )) {
+        searchResultList.add(i);
+      }
+    }
+    filterList = searchResultList;
+    setState(() {});
   }
 }

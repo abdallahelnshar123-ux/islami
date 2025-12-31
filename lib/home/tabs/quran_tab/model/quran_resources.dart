@@ -115,7 +115,7 @@ class QuranResources {
     "الفلق",
     "الناس",
   ];
-  static List<String> englishQuranSurahs = [
+  static List<String> englishQuranSuras = [
     "Al-Fatiha",
     "Al-Baqarah",
     "Aal-E-Imran",

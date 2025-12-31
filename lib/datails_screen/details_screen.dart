@@ -59,7 +59,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
         title: Text(
           indexList[0] == 0
-              ? QuranResources.englishQuranSurahs[suraIndex]
+              ? QuranResources.englishQuranSuras[suraIndex]
               : 'Hadeth $hadethIndex',
         ),
         actions: [
