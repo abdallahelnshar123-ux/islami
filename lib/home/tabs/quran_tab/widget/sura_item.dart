@@ -18,24 +18,25 @@ class SuraItemWidget extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       horizontalTitleGap: context.width * 0.046,
-      minVerticalPadding: 12,
+      minVerticalPadding: 15,
       contentPadding: EdgeInsetsGeometry.zero,
       leading: Stack(
         alignment: Alignment.center,
         children: [
           SvgPicture.asset(
             width: 60,
+
             AppAssets.iconSuraNumber,
             colorFilter: ColorFilter.mode(
               AppColors.whiteColor,
               BlendMode.srcIn,
             ),
           ),
-          Text("${index + 1}", style: AppStyles.bold16White),
+          Text("${index + 1}", style: AppStyles.bold12White),
         ],
       ),
       title: Text(
-        QuranResources.englishQuranSurahs[index],
+        QuranResources.englishQuranSuras[index],
         style: AppStyles.bold20White,
       ),
       subtitle: Text(
