@@ -149,7 +149,7 @@ class _QuranTabState extends State<QuranTab> {
                     Navigator.pushNamed(
                       context,
                       AppRoutes.detailsRouteName,
-                      arguments: index,
+                      arguments: [0, index],
                     );
                     setState(() {});
                   },

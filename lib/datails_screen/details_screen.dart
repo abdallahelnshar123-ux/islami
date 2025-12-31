@@ -7,6 +7,7 @@ import 'package:islami1/utils/app_colors.dart';
 import 'package:islami1/utils/app_styles.dart';
 import 'package:islami1/utils/screen_size.dart';
 
+import '../home/tabs/hadeth_tab/model/hadeth_data.dart';
 import '../home/tabs/quran_tab/model/quran_resources.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -17,61 +18,102 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  bool isLoaded = false;
   List<String> suraVerses = [];
-  bool style1 = true;
-  bool style2 = false;
+  int style = 1;
+
+  // bool style1 = true;
+  // bool style2 = false;
   int selectedIndex = -1;
+  Hadeth? hadeth;
+  late int hadethIndex;
+  late List<int> indexList;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (isLoaded) return;
+    indexList = ModalRoute.of(context)!.settings.arguments as List<int>;
+    if (indexList[0] == 0) {
+      loadSuraFiles(indexList[1]);
+    } else {
+      loadHadethFiles(indexList[1]);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    int index = ModalRoute.of(context)!.settings.arguments as int;
-    if (suraVerses.isEmpty) loadSuraFiles(index);
+    int suraIndex;
+    if (indexList[0] == 0) {
+      suraIndex = indexList[1];
+      hadethIndex = 1;
+    } else {
+      hadethIndex = indexList[1];
+      suraIndex = 1;
+    }
+
     return Scaffold(
       backgroundColor: AppColors.blackColor,
       appBar: AppBar(
         actionsPadding: EdgeInsetsGeometry.only(right: context.width * 0.05),
 
-        title: Text(QuranResources.englishQuranSurahs[index]),
+        title: Text(
+          indexList[0] == 0
+              ? QuranResources.englishQuranSurahs[suraIndex]
+              : 'Hadeth $hadethIndex',
+        ),
         actions: [
-          TextButton(
-            style: TextButton.styleFrom(
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minimumSize: Size.zero,
-              padding: EdgeInsetsGeometry.symmetric(horizontal: 15),
-              backgroundColor: style1
-                  ? AppColors.primaryColor
-                  : AppColors.blackColor,
-            ),
-            onPressed: () {
-              style1 = true;
-              style2 = false;
-              setState(() {});
-            },
-            child: Text(
-              '1',
-              style: AppStyles.bold16White.copyWith(
-                color: style1 ? AppColors.blackColor : AppColors.primaryColor,
+          Visibility(
+            visible: indexList[0] == 0,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                minimumSize: Size.zero,
+                padding: EdgeInsetsGeometry.symmetric(horizontal: 15),
+                backgroundColor: style == 1
+                    ? AppColors.primaryColor
+                    : AppColors.blackColor,
+              ),
+              onPressed: () {
+                style = 1;
+                // style1 = true;
+                // style2 = false;
+                setState(() {});
+              },
+              child: Text(
+                '1',
+                style: AppStyles.bold16White.copyWith(
+                  color: style == 1
+                      ? AppColors.blackColor
+                      : AppColors.primaryColor,
+                ),
               ),
             ),
           ),
-          TextButton(
-            style: TextButton.styleFrom(
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minimumSize: Size.zero,
-              padding: EdgeInsetsGeometry.symmetric(horizontal: 15),
-              backgroundColor: style2
-                  ? AppColors.primaryColor
-                  : AppColors.blackColor,
-            ),
-            onPressed: () {
-              style1 = false;
-              style2 = true;
-              setState(() {});
-            },
-            child: Text(
-              '2',
-              style: AppStyles.bold16White.copyWith(
-                color: style2 ? AppColors.blackColor : AppColors.primaryColor,
+          Visibility(
+            visible: indexList[0] == 0,
+            child: TextButton(
+              style: TextButton.styleFrom(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                minimumSize: Size.zero,
+                padding: EdgeInsetsGeometry.symmetric(horizontal: 15),
+                backgroundColor: style == 2
+                    ? AppColors.primaryColor
+                    : AppColors.blackColor,
+              ),
+              onPressed: () {
+                style = 2;
+                // style1 = false;
+                // style2 = true;
+                setState(() {});
+              },
+              child: Text(
+                '2',
+                style: AppStyles.bold16White.copyWith(
+                  color: style == 2
+                      ? AppColors.blackColor
+                      : AppColors.primaryColor,
+                ),
               ),
             ),
           ),
@@ -93,12 +135,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
         child: Column(
           spacing: context.height * 0.04,
           children: [
-            Text(
-              QuranResources.arabicQuranSuras[index],
-              style: AppStyles.bold24Primary,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: context.width * 0.15),
+              child: Text(
+                textAlign: TextAlign.center,
+                indexList[0] == 0
+                    ? QuranResources.arabicQuranSuras[suraIndex]
+                    : hadeth?.title ?? '',
+                style: AppStyles.bold24Primary,
+              ),
             ),
             Expanded(
-              child: suraVerses.isEmpty
+              child: !isLoaded
                   ? Center(
                       child: CircularProgressIndicator(
                         color: AppColors.primaryColor,
@@ -106,24 +154,33 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     )
                   : ListView.separated(
                       padding: EdgeInsetsGeometry.all(context.width * 0.05),
-                      itemBuilder: (context, index) => style1
-                          ? ContentStyle1(contentList: suraVerses)
+                      itemBuilder: (context, index) => style == 1
+                          ? ContentStyle1(
+                              contentList: indexList[0] == 0
+                                  ? suraVerses
+                                  : [hadeth!.content],
+                            )
                           : ContentStyle2(
                               onTap: () {
-                                if (selectedIndex == index) {
-                                  selectedIndex = -1;
-                                } else {
-                                  selectedIndex = index;
-                                }
+                                selectedIndex = selectedIndex == index
+                                    ? -1
+                                    : index;
+
                                 setState(() {});
                               },
                               selectedIndex: selectedIndex,
-                              contentLine: suraVerses[index],
+                              contentLine: suraVerses.isEmpty
+                                  ? ''
+                                  : suraVerses[index],
                               index: index,
                             ),
                       separatorBuilder: (context, index) =>
-                          SizedBox(height: style1 ? 0 : 10),
-                      itemCount: style1 ? 1 : suraVerses.length,
+                          SizedBox(height: style == 1 ? 0 : 10),
+                      itemCount: indexList[0] == 0
+                          ? style == 1
+                                ? 1
+                                : suraVerses.length
+                          : 1,
                     ),
             ),
           ],
@@ -139,6 +196,22 @@ class _DetailsScreenState extends State<DetailsScreen> {
     List<String> contentLines = fileContent.split('\n');
     suraVerses = contentLines;
 
-    setState(() {});
+    setState(() {
+      isLoaded = true;
+    });
+    debugPrint('test1');
+  }
+
+  void loadHadethFiles(int index) async {
+    String fileContent = await rootBundle.loadString(
+      'assets/hadeeth/h$index.txt',
+    );
+    String title = fileContent.substring(0, fileContent.indexOf('\n'));
+    String content = fileContent.substring(fileContent.indexOf('\n') + 1);
+    hadeth = Hadeth(title: title, content: content);
+    setState(() {
+      isLoaded = true;
+    });
+    debugPrint('test2');
   }
 }

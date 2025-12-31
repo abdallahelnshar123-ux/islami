@@ -18,6 +18,7 @@ class ContentStyle1 extends StatelessWidget {
 
   String joinContent(List<String> suraVerses) {
     List<String> tempList = [];
+    if (suraVerses.length == 1) return suraVerses[0];
     for (int i = 0; i < suraVerses.length; i++) {
       tempList.add('${suraVerses[i]} [${i + 1}]');
     }

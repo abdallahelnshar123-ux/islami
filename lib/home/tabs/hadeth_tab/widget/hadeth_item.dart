@@ -21,7 +21,6 @@ class _HadethItemState extends State<HadethItem> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadHadethFiles();
   }
