@@ -8,7 +8,7 @@ import 'package:islami1/utils/app_assets.dart';
 import 'package:islami1/utils/app_colors.dart';
 import 'package:islami1/utils/app_styles.dart';
 import 'package:islami1/utils/screen_size.dart';
-import 'package:islami1/utils/shared_prefs_utils.dart';
+import 'package:islami1/utils/shared_prefs.dart';
 
 import '../../../utils/app_routes.dart';
 

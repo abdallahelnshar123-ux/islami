@@ -4,7 +4,7 @@ import 'package:islami1/intro_screen/intro_screen.dart';
 import 'package:islami1/utils/app_routes.dart';
 import 'package:islami1/utils/app_theme.dart';
 import 'package:islami1/utils/provider.dart';
-import 'package:islami1/utils/shared_prefs_utils.dart';
+import 'package:islami1/utils/shared_prefs.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islami1/utils/shared_prefs_utils.dart';
+import 'package:islami1/utils/shared_prefs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MostRecentProvider extends ChangeNotifier {
