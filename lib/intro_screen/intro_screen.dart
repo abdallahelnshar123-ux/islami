@@ -5,6 +5,7 @@ import 'package:islami1/utils/app_colors.dart';
 import 'package:islami1/utils/app_routes.dart';
 import 'package:islami1/utils/app_styles.dart';
 import 'package:islami1/utils/screen_size.dart';
+import 'package:islami1/utils/shared_prefs_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -60,7 +61,7 @@ class _IntroScreenState extends State<IntroScreen> {
         Navigator.pushReplacementNamed(context, AppRoutes.homeRouteName);
         SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
-        sharedPreferences.setBool(AppRoutes.introScreenKey, false);
+        sharedPreferences.setBool(SharedPrefsKeys.introScreenKey, false);
         setState(() {});
       },
       nextStyle: TextButton.styleFrom(),

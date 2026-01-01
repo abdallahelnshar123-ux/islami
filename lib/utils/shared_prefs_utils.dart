@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefsKeys {
   static const String mostRecentKey = 'most_recent';
+  static const String introScreenKey = 'intro';
 }
 
 void saveLastSuraIndex(int newSuraIndex) async {
@@ -16,12 +17,4 @@ void saveLastSuraIndex(int newSuraIndex) async {
   if (mostRecentList.length > 5) mostRecentList.removeLast();
   await prefs.setStringList(SharedPrefsKeys.mostRecentKey, mostRecentList);
   debugPrint('set');
-}
-
-Future<List<int>> getMostRecentIndex() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  List<String> mostRecentList =
-      prefs.getStringList(SharedPrefsKeys.mostRecentKey) ?? [];
-  debugPrint('get');
-  return mostRecentList.map((element) => int.parse(element)).toList();
 }

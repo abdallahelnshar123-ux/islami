@@ -6,9 +6,11 @@ import 'package:islami1/utils/app_assets.dart';
 import 'package:islami1/utils/app_colors.dart';
 import 'package:islami1/utils/app_styles.dart';
 import 'package:islami1/utils/screen_size.dart';
+import 'package:provider/provider.dart';
 
 import '../home/tabs/hadeth_tab/model/hadeth_data.dart';
 import '../home/tabs/quran_tab/model/quran_resources.dart';
+import '../utils/provider.dart';
 
 class DetailsScreen extends StatefulWidget {
   DetailsScreen({super.key});
@@ -18,6 +20,7 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  late MostRecentProvider mostRecentProvider;
   bool isLoaded = false;
   List<String> suraVerses = [];
   int style = 1;
@@ -28,6 +31,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Hadeth? hadeth;
   late int hadethIndex;
   late List<int> indexList;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    mostRecentProvider.getMostRecentIndex();
+  }
 
   @override
   void didChangeDependencies() {
@@ -43,6 +53,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    mostRecentProvider = Provider.of<MostRecentProvider>(context);
     int suraIndex;
     if (indexList[0] == 0) {
       suraIndex = indexList[1];

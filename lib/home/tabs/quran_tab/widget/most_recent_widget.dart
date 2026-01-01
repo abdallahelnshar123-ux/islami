@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami1/home/tabs/quran_tab/model/quran_resources.dart';
-import 'package:islami1/utils/shared_prefs_utils.dart';
+import 'package:islami1/utils/provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../utils/app_assets.dart';
 import '../../../../utils/app_colors.dart';
@@ -13,24 +14,23 @@ class MostRecentWidget extends StatefulWidget {
 }
 
 class _MostRecentWidgetState extends State<MostRecentWidget> {
-  List<int> mostRecentList = [];
+  late MostRecentProvider mostRecentProvider;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    readMostRecentIndex();
-  }
-
-  void readMostRecentIndex() async {
-    mostRecentList = await getMostRecentIndex();
-    setState(() {});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      mostRecentProvider.getMostRecentIndex();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    mostRecentProvider = Provider.of<MostRecentProvider>(context);
+
     return Visibility(
-      visible: mostRecentList.isNotEmpty,
+      visible: mostRecentProvider.mostRecentList.isNotEmpty,
       child: Column(
         spacing: context.height * 0.01,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,17 +62,17 @@ class _MostRecentWidgetState extends State<MostRecentWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            QuranResources
-                                .englishQuranSuras[mostRecentList[index]],
+                            QuranResources.englishQuranSuras[mostRecentProvider
+                                .mostRecentList[index]],
                             style: AppStyles.bold24Black,
                           ),
                           Text(
-                            QuranResources
-                                .arabicQuranSuras[mostRecentList[index]],
+                            QuranResources.arabicQuranSuras[mostRecentProvider
+                                .mostRecentList[index]],
                             style: AppStyles.bold24Black,
                           ),
                           Text(
-                            '${QuranResources.ayatNumber[mostRecentList[index]]} Verses',
+                            '${QuranResources.ayatNumber[mostRecentProvider.mostRecentList[index]]} Verses',
                             style: AppStyles.bold14Black,
                           ),
                         ],
@@ -85,7 +85,7 @@ class _MostRecentWidgetState extends State<MostRecentWidget> {
               separatorBuilder: (context, index) {
                 return SizedBox(width: context.width * 0.04);
               },
-              itemCount: mostRecentList.length,
+              itemCount: mostRecentProvider.mostRecentList.length,
             ),
           ),
         ],
