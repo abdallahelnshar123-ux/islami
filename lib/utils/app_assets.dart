@@ -16,6 +16,8 @@ class AppAssets {
   static const String introImage5 = 'assets/images/intro_image_5.png';
   static const String hadethDecorImage = 'assets/images/hadeth_decor.png';
   static const String sebhaImage = 'assets/images/sebha.png';
+  static const String radioDecor = 'assets/images/radio_player_decor.png';
+  static const String soundWave = 'assets/images/sound_wave.png';
 
   /// icons=========================
   static const String iconQuran = 'assets/icons/icon_quran.svg';
