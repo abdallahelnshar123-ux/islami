@@ -15,6 +15,12 @@ class AppStyles {
     color: AppColors.whiteColor,
     fontSize: 12,
   );
+  static const TextStyle bold32White = TextStyle(
+    fontFamily: 'Janna',
+    fontWeight: FontWeight.w700,
+    color: AppColors.whiteColor,
+    fontSize: 32,
+  );
   static const TextStyle bold20White = TextStyle(
     fontFamily: 'Janna',
     fontWeight: FontWeight.w700,
