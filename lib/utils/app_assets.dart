@@ -27,4 +27,8 @@ class AppAssets {
   static const String iconTime = 'assets/icons/icon_time.svg';
   static const String iconSearch = 'assets/icons/icon_search.svg';
   static const String iconSuraNumber = 'assets/icons/sura_num_icon.svg';
+  static const String iconPause = 'assets/icons/pause_icon.svg';
+  static const String iconPlay = 'assets/icons/play_icon.svg';
+  static const String iconVolumeOff = 'assets/icons/volume_off_icon.svg';
+  static const String iconVolumeOn = 'assets/icons/volume_on_icon.svg';
 }
