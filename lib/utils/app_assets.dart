@@ -18,6 +18,11 @@ class AppAssets {
   static const String sebhaImage = 'assets/images/sebha.png';
   static const String radioDecor = 'assets/images/radio_player_decor.png';
   static const String soundWave = 'assets/images/sound_wave.png';
+  static const String prayBg = 'assets/images/pray_bg.png';
+  static const String eveningAzkarImg = 'assets/images/evening_azkar_img.png';
+  static const String morningAzkarImg = 'assets/images/morning_azkar_img.png';
+  static const String wakingAzkarImg = 'assets/images/waking_azkar_img.png';
+  static const String sleepingAzkarImg = 'assets/images/sleeping_azkar_img.png';
 
   /// icons=========================
   static const String iconQuran = 'assets/icons/icon_quran.svg';
@@ -29,6 +34,8 @@ class AppAssets {
   static const String iconSuraNumber = 'assets/icons/sura_num_icon.svg';
   static const String iconPause = 'assets/icons/pause_icon.svg';
   static const String iconPlay = 'assets/icons/play_icon.svg';
-  static const String iconVolumeOff = 'assets/icons/volume_off_icon.svg';
-  static const String iconVolumeOn = 'assets/icons/volume_on_icon.svg';
+  static const String iconVolumeMuted1 = 'assets/icons/volume_muted1_icon.svg';
+  static const String iconVolumeMuted2 = 'assets/icons/volume_muted2_icon.svg';
+  static const String iconVolumeUnmuted =
+      'assets/icons/volume_unmuted_icon.svg';
 }

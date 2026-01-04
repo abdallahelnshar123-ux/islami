@@ -45,7 +45,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                 padding: EdgeInsets.all(0),
                 onPressed: () {},
                 icon: SvgPicture.asset(
-                  AppAssets.iconVolumeOn,
+                  AppAssets.iconVolumeUnmuted,
                   colorFilter: ColorFilter.mode(
                     AppColors.transparentColor,
                     BlendMode.srcIn,
@@ -75,7 +75,9 @@ class _PlayerWidgetState extends State<PlayerWidget> {
                 },
                 icon: SvgPicture.asset(
                   width: 35,
-                  volumeOn ? AppAssets.iconVolumeOn : AppAssets.iconVolumeOff,
+                  volumeOn
+                      ? AppAssets.iconVolumeUnmuted
+                      : AppAssets.iconVolumeMuted2,
                   colorFilter: ColorFilter.mode(
                     AppColors.blackColor,
                     BlendMode.srcIn,

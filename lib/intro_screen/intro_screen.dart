@@ -51,6 +51,7 @@ class _IntroScreenState extends State<IntroScreen> {
               'the application for free and easily ',
         ),
       ],
+
       freeze: true,
       showSkipButton: false,
       showBackButton: true,
@@ -64,7 +65,9 @@ class _IntroScreenState extends State<IntroScreen> {
         sharedPreferences.setBool(SharedPrefsKeys.introScreenKey, false);
         setState(() {});
       },
-      nextStyle: TextButton.styleFrom(),
+      backStyle: TextButton.styleFrom(overlayColor: AppColors.primaryColor),
+      doneStyle: TextButton.styleFrom(overlayColor: AppColors.primaryColor),
+      nextStyle: TextButton.styleFrom(overlayColor: AppColors.primaryColor),
       dotsDecorator: DotsDecorator(
         size: const Size.square(10.0),
         activeSize: const Size(20.0, 10.0),

@@ -34,7 +34,6 @@ class RadioTab extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
-
                 children: [
                   PlayersList(),
                   PlayersList(),
