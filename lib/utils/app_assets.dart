@@ -16,6 +16,8 @@ class AppAssets {
   static const String introImage5 = 'assets/images/intro_image_5.png';
   static const String hadethDecorImage = 'assets/images/hadeth_decor.png';
   static const String sebhaImage = 'assets/images/sebha.png';
+  static const String radioDecor = 'assets/images/radio_player_decor.png';
+  static const String soundWave = 'assets/images/sound_wave.png';
 
   /// icons=========================
   static const String iconQuran = 'assets/icons/icon_quran.svg';
@@ -25,4 +27,8 @@ class AppAssets {
   static const String iconTime = 'assets/icons/icon_time.svg';
   static const String iconSearch = 'assets/icons/icon_search.svg';
   static const String iconSuraNumber = 'assets/icons/sura_num_icon.svg';
+  static const String iconPause = 'assets/icons/pause_icon.svg';
+  static const String iconPlay = 'assets/icons/play_icon.svg';
+  static const String iconVolumeOff = 'assets/icons/volume_off_icon.svg';
+  static const String iconVolumeOn = 'assets/icons/volume_on_icon.svg';
 }
