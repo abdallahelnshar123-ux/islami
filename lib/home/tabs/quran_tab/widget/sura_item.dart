@@ -25,14 +25,19 @@ class SuraItemWidget extends StatelessWidget {
         children: [
           SvgPicture.asset(
             width: 60,
-
             AppAssets.iconSuraNumber,
             colorFilter: ColorFilter.mode(
               AppColors.whiteColor,
               BlendMode.srcIn,
             ),
           ),
-          Text("${index + 1}", style: AppStyles.bold12White),
+          SizedBox(
+            width: 28,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text("${index + 1}", style: AppStyles.bold16White),
+            ),
+          ),
         ],
       ),
       title: Text(

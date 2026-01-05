@@ -9,6 +9,8 @@ import 'package:islami1/utils/shared_prefs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
+  const IntroScreen({super.key});
+
   @override
   State<IntroScreen> createState() => _IntroScreenState();
 }
@@ -18,6 +20,8 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return IntroductionScreen(
       globalBackgroundColor: AppColors.blackColor,
+
+      /// introduction pages ==================================================
       pages: [
         builtPageView(
           AppAssets.introImage1,
@@ -53,6 +57,8 @@ class _IntroScreenState extends State<IntroScreen> {
       ],
 
       freeze: true,
+
+      /// no swipe ========================
       showSkipButton: false,
       showBackButton: true,
       back: const Text("Back", style: AppStyles.bold15Primary),
@@ -85,6 +91,7 @@ class _IntroScreenState extends State<IntroScreen> {
     );
   }
 
+  /// pages builder ========================================================
   PageViewModel builtPageView(
     String pageImage,
     BuildContext context,
@@ -92,6 +99,7 @@ class _IntroScreenState extends State<IntroScreen> {
     String secondText,
   ) {
     return PageViewModel(
+      /// false means no scrolling for body ,  if the content overflows gives error
       useScrollView: false,
       titleWidget: Image.asset(AppAssets.islamiLogo),
       bodyWidget: Image.asset(pageImage, fit: BoxFit.cover),
@@ -114,7 +122,11 @@ class _IntroScreenState extends State<IntroScreen> {
       ),
       decoration: PageDecoration(
         bodyPadding: EdgeInsets.symmetric(horizontal: context.width * 0.04),
+
+        /// footer space , 0 means it stay in the bottom
         footerFlex: 0,
+
+        /// space between footer and control buttons
         safeArea: context.height * 0.03,
         bodyAlignment: Alignment.center,
       ),

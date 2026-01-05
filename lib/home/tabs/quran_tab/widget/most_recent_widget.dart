@@ -9,6 +9,10 @@ import '../../../../utils/app_styles.dart';
 import '../../../../utils/screen_size.dart';
 
 class MostRecentWidget extends StatefulWidget {
+  final bool searching;
+
+  const MostRecentWidget({super.key, required this.searching});
+
   @override
   State<MostRecentWidget> createState() => _MostRecentWidgetState();
 }
@@ -30,7 +34,9 @@ class _MostRecentWidgetState extends State<MostRecentWidget> {
     mostRecentProvider = Provider.of<MostRecentProvider>(context);
 
     return Visibility(
-      visible: mostRecentProvider.mostRecentList.isNotEmpty,
+      visible:
+          widget.searching == false &&
+          mostRecentProvider.mostRecentList.isNotEmpty,
       child: Column(
         spacing: context.height * 0.01,
         crossAxisAlignment: CrossAxisAlignment.start,
