@@ -6,7 +6,7 @@ import 'package:islami1/utils/app_styles.dart';
 import 'package:islami1/utils/screen_size.dart';
 
 class TimeTab extends StatelessWidget {
-  TimeTab({super.key});
+  const TimeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,33 +54,5 @@ class TimeTab extends StatelessWidget {
         ),
       ],
     );
-
-    /*
-      Column(
-        spacing: context.height*0.025,
-        crossAxisAlignment:CrossAxisAlignment.start,
-        children: [
-          /// time widget ======================================================
-          TimeWidget(),
-
-          Text('Azkar',style: AppStyles.bold16White,),
-          Expanded(
-            child: GridView.builder(
-
-              itemCount: 4,
-              itemBuilder: (context, index) => AzkarWidget(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-
-                crossAxisSpacing: context.width*0.048,
-                mainAxisSpacing: context.width*0.048,
-                crossAxisCount: 2,
-                childAspectRatio: 2 / 3,
-              ),
-            ),
-          ),
-        ],
-      ),
-
-       */
   }
 }

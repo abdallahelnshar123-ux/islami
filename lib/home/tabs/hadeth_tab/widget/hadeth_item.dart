@@ -8,9 +8,9 @@ import 'package:islami1/utils/screen_size.dart';
 import '../model/hadeth_data.dart';
 
 class HadethItem extends StatefulWidget {
-  int index;
+  final int index;
 
-  HadethItem({super.key, required this.index});
+  const HadethItem({super.key, required this.index});
 
   @override
   State<HadethItem> createState() => _HadethItemState();
@@ -78,6 +78,7 @@ class _HadethItemState extends State<HadethItem> {
     );
   }
 
+  /// load hadeth data function ==============================================
   void loadHadethFiles() async {
     String fileContent = await rootBundle.loadString(
       'assets/hadeeth/h${widget.index}.txt',

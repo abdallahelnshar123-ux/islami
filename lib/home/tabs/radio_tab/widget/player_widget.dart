@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:islami1/home/tabs/radio_tab/widget/player_button.dart';
 
 import '../../../../utils/app_assets.dart';
 import '../../../../utils/app_colors.dart';
@@ -7,13 +7,14 @@ import '../../../../utils/app_styles.dart';
 import '../../../../utils/screen_size.dart';
 
 class PlayerWidget extends StatefulWidget {
+  const PlayerWidget({super.key});
+
   @override
   State<PlayerWidget> createState() => _PlayerWidgetState();
 }
 
 class _PlayerWidgetState extends State<PlayerWidget> {
   bool play = false;
-
   bool volumeOn = true;
 
   @override
@@ -39,50 +40,27 @@ class _PlayerWidgetState extends State<PlayerWidget> {
             spacing: context.width * 0.03,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              IconButton(
-                splashColor: AppColors.transparentColor,
-                highlightColor: AppColors.transparentColor,
-                padding: EdgeInsets.all(0),
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  AppAssets.iconVolumeUnmuted,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.transparentColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-              IconButton(
-                padding: EdgeInsets.all(0),
+              /// hidden button ===========================================
+              PlayerButton.hidden(),
+
+              /// play/pause button ===========================================
+              PlayerButton(
                 onPressed: () {
                   play = !play;
                   setState(() {});
                 },
-                icon: SvgPicture.asset(
-                  width: 35,
-                  play ? AppAssets.iconPause : AppAssets.iconPlay,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.blackColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                icon: play ? AppAssets.iconPause : AppAssets.iconPlay,
               ),
-              IconButton(
-                padding: EdgeInsets.all(0),
+
+              /// volume button ===========================================
+              PlayerButton(
                 onPressed: () {
                   volumeOn = !volumeOn;
                   setState(() {});
                 },
-                icon: SvgPicture.asset(
-                  width: 35,
-                  volumeOn
-                      ? AppAssets.iconVolumeUnmuted
-                      : AppAssets.iconVolumeMuted2,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.blackColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                icon: volumeOn
+                    ? AppAssets.iconVolumeUnmuted
+                    : AppAssets.iconVolumeMuted2,
               ),
             ],
           ),

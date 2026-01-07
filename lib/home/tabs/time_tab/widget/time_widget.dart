@@ -9,6 +9,7 @@ import '../../../../utils/screen_size.dart';
 import 'Pray_time_widget.dart';
 
 class TimeWidget extends StatelessWidget {
+  const TimeWidget({super.key});
   @override
   Widget build(BuildContext context) {
     return SizedBox(

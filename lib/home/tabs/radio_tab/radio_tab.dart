@@ -4,12 +4,11 @@ import 'package:islami1/utils/app_colors.dart';
 import 'package:islami1/utils/screen_size.dart';
 
 class RadioTab extends StatelessWidget {
-  RadioTab({super.key});
+  const RadioTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-
       length: 2,
       child: Padding(
         padding: EdgeInsetsGeometry.symmetric(
@@ -18,20 +17,22 @@ class RadioTab extends StatelessWidget {
         child: Column(
           spacing: context.height * 0.019,
           children: [
+
+            /// container for background ===================================
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: AppColors.black70Color,
               ),
               child: TabBar(
-
-
               tabs: [Text('Radio'), Text('Reciters')],
                 labelPadding: EdgeInsetsGeometry.symmetric(
                   vertical: context.height * 0.01,
                 ),
               ),
             ),
+
+            /// tabs ==========================================================
             Expanded(
               child: TabBarView(
                 children: [
