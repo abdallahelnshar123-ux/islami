@@ -8,8 +8,10 @@ import 'package:islami1/home/tabs/time_tab/time_tab.dart';
 import 'package:islami1/utils/app_assets.dart';
 import 'package:islami1/utils/app_colors.dart';
 
+import '../utils/screen_size.dart';
+
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,6 +19,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
+
+  /// tabs background images list ============================================
   List<String> backGroundImages = [
     AppAssets.quranBG,
     AppAssets.hadethBG,
@@ -24,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
     AppAssets.radioBG,
     AppAssets.timeBG,
   ];
+
+  /// tabs widgets list ============================================
   List<Widget> tabsList = [
     QuranTab(),
     HadethTab(),
@@ -34,10 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    var height = MediaQuery.of(context).size.height;
+    /// app home screen body ===============================================
     return Stack(
       children: [
+        /// tabs background images ==========================================
         Image.asset(
           backGroundImages[selectedIndex],
           fit: BoxFit.cover,
@@ -55,6 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 selectedIndex = index;
                 setState(() {});
               },
+
+              /// navigation bar icons =====================================
               items: [
                 builtBottomNavigationBarItem(
                   label: 'Quran',
@@ -84,10 +92,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
+
+          /// body contains islami logo static , tabs changes by taping bottom navigation bar
           body: SafeArea(
             child: Column(
-              spacing: height * 0.01,
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              spacing: context.height * 0.01,
               children: [
                 Image.asset(AppAssets.islamiLogo),
                 Expanded(child: tabsList[selectedIndex]),

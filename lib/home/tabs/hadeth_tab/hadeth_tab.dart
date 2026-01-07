@@ -5,7 +5,7 @@ import 'package:islami1/utils/app_routes.dart';
 import 'package:islami1/utils/screen_size.dart';
 
 class HadethTab extends StatelessWidget {
-  HadethTab({super.key});
+  const HadethTab({super.key});
 
   @override
   Widget build(BuildContext context) {

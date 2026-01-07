@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islami1/home/tabs/quran_tab/model/quran_resources.dart';
-import 'package:islami1/home/tabs/quran_tab/model/sura_data.dart';
 import 'package:islami1/home/tabs/quran_tab/widget/most_recent_widget.dart';
+import 'package:islami1/home/tabs/quran_tab/widget/search_text_field.dart';
 import 'package:islami1/home/tabs/quran_tab/widget/sura_item.dart';
-import 'package:islami1/utils/app_assets.dart';
 import 'package:islami1/utils/app_colors.dart';
 import 'package:islami1/utils/app_styles.dart';
 import 'package:islami1/utils/screen_size.dart';
@@ -13,7 +11,7 @@ import 'package:islami1/utils/shared_prefs.dart';
 import '../../../utils/app_routes.dart';
 
 class QuranTab extends StatefulWidget {
-  QuranTab({super.key});
+  const QuranTab({super.key});
 
   @override
   State<QuranTab> createState() => _QuranTabState();
@@ -21,7 +19,6 @@ class QuranTab extends StatefulWidget {
 
 class _QuranTabState extends State<QuranTab> {
   List<int> filterList = List.generate(114, (index) => index);
-  List<SuraData> suraDataList = [];
   bool searching = false;
 
   @override
@@ -33,35 +30,10 @@ class _QuranTabState extends State<QuranTab> {
         spacing: context.height * 0.01,
         children: [
           /// search text field ==================================
-          TextField(
-            autofocus: false,
-            onChanged: (text) {
-              searchByNewText(text);
-            },
-            cursorColor: AppColors.primaryColor,
-            style: AppStyles.bold16White,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsetsGeometry.symmetric(vertical: 13),
-              hintText: 'Sura Name',
-              hintStyle: AppStyles.bold16White,
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(10),
-                child: SvgPicture.asset(
-                  width: 28,
-                  AppAssets.iconSearch,
-                  colorFilter: ColorFilter.mode(
-                    AppColors.primaryColor,
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-              enabledBorder: builtDecorationBorder(),
-              focusedBorder: builtDecorationBorder(),
-            ),
-          ),
+          SearchTextField(searchFunction: searchByNewText),
 
           /// most recently widget==================================
-          Visibility(visible: searching == false, child: MostRecentWidget()),
+          MostRecentWidget(searching: searching),
 
           /// suras list Text ===========================================
           Text('Suras List', style: AppStyles.bold16White),
@@ -77,27 +49,27 @@ class _QuranTabState extends State<QuranTab> {
                   )
                 : ListView.separated(
                     itemBuilder: (context, index) {
-                return SuraItemWidget(
+                      return SuraItemWidget(
                         index: filterList[index],
                         onTap: () {
                           saveLastSuraIndex(filterList[index]);
                           Navigator.pushNamed(
-                      context,
-                      AppRoutes.detailsRouteName,
+                            context,
+                            AppRoutes.detailsRouteName,
                             arguments: [0, filterList[index]],
                           );
-                    setState(() {});
-                  },
-                );
-              },
-              separatorBuilder: (context, index) {
-                return Divider(
-                  height: 1,
-                  color: AppColors.whiteColor,
-                  indent: context.width * 0.1,
-                  endIndent: context.width * 0.1,
-                );
-              },
+                          setState(() {});
+                        },
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        height: 1,
+                        color: AppColors.whiteColor,
+                        indent: context.width * 0.1,
+                        endIndent: context.width * 0.1,
+                      );
+                    },
                     itemCount: filterList.length,
                   ),
           ),
@@ -106,13 +78,7 @@ class _QuranTabState extends State<QuranTab> {
     );
   }
 
-  OutlineInputBorder builtDecorationBorder() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(width: 2, color: AppColors.primaryColor),
-    );
-  }
-
+  /// search function =======================================================
   void searchByNewText(String text) {
     List<int> searchResultList = [];
     for (int i = 0; i < QuranResources.arabicQuranSuras.length; i++) {

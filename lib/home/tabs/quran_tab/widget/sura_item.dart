@@ -8,10 +8,10 @@ import 'package:islami1/utils/screen_size.dart';
 import '../model/quran_resources.dart';
 
 class SuraItemWidget extends StatelessWidget {
-  int index;
-  GestureTapCallback onTap;
+  final int index;
+  final GestureTapCallback onTap;
 
-  SuraItemWidget({super.key, required this.index, required this.onTap});
+  const SuraItemWidget({super.key, required this.index, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +25,19 @@ class SuraItemWidget extends StatelessWidget {
         children: [
           SvgPicture.asset(
             width: 60,
-
             AppAssets.iconSuraNumber,
             colorFilter: ColorFilter.mode(
               AppColors.whiteColor,
               BlendMode.srcIn,
             ),
           ),
-          Text("${index + 1}", style: AppStyles.bold12White),
+          SizedBox(
+            width: 28,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text("${index + 1}", style: AppStyles.bold16White),
+            ),
+          ),
         ],
       ),
       title: Text(

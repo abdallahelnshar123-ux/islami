@@ -1,9 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:islami1/utils/app_assets.dart';
+import 'package:islami1/home/tabs/sebha_tab/widget/sebha_widget.dart';
 import 'package:islami1/utils/app_styles.dart';
-import 'package:islami1/utils/screen_size.dart';
 
 class SebhaTab extends StatefulWidget {
   SebhaTab({super.key});
@@ -26,42 +25,17 @@ class _SebhaTabState extends State<SebhaTab> {
       children: [
         SizedBox(height: 7),
         Text(
-          'سَبِّحِ اسْمَ رَبِّكَ الأعلى ',
+          'سَبِّحِ اسْمَ رَبِّكَ الأعلى',
           textDirection: TextDirection.rtl,
           style: AppStyles.bold32White,
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 30),
-        Expanded(
-          child: GestureDetector(
-            onTap: rotateImage,
-            child: Padding(
-              padding: EdgeInsets.all(0),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Transform.rotate(
-                    angle: angle,
-                    child: Image.asset(AppAssets.sebhaImage),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    spacing: context.height * 0.04,
-                    children: [
-                      // SizedBox(height: context.height * 0.09),
-                      Text(
-                        tasbehText,
-                        style: AppStyles.bold32White,
-                        textDirection: TextDirection.rtl,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text('$counterText', style: AppStyles.bold32White),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+        SebhaWidget(
+          counterText: counterText,
+          angle: angle,
+          opTap: rotateImage,
+          tasbehText: tasbehText,
         ),
       ],
     );
@@ -92,28 +66,6 @@ class _SebhaTabState extends State<SebhaTab> {
         tasbehText = 'سبحان الله';
         break;
     }
-
-    // if (counter < 99) {
-    //   if (counter >= 0 && counter <= 32) {
-    //     counterText <= 32 ? counterText++ : counterText = 0;
-    //     tasbehText = 'سبحان الله';
-    //   } else if (counter >= 33 && counter <= 66) {
-    //     counterText <= 32 ? counterText++ : counterText = 0;
-    //     tasbehText = 'الحمد لله';
-    //   } else if (counter >= 66) {
-    //     counterText <= 32 ? counterText++ : counterText = 0;
-    //     tasbehText = 'الله أكبر';
-    //   }
-    //   angle += 10.9090909091 * math.pi / 180;
-    //   // counter <33 ? counter++ : counter=0;
-    //
-    //   counter++;
-    // } else {
-    //   angle = 0;
-    //   counter = 0;
-    //   tasbehText = 'سبحان الله';
-    // }
-
     setState(() {});
   }
 }

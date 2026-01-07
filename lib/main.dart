@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'home/home_screen.dart';
 
 void main() async {
+  /// ensure that app starts after splash screen
   WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
   final bool showIntro =
